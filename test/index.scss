@@ -1,11 +1,5 @@
 @use 'sass-true' as *;
 
-@include describe('Simple test') {
-  @include it('Passes') {
-    @include assert-equal(true, true);
-  }
-}
-
 @import './utility';
 
 @include report;
