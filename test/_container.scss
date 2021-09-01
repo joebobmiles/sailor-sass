@@ -1,0 +1,42 @@
+// stylelint-disable scss/at-extend-no-missing-placeholder
+@use 'sass-true' as *;
+@use 'lib/utility' as *;
+@use 'lib/container' as *;
+
+$breakpoints: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  2xl: 1536px,
+);
+
+@include describe('.container') {
+  @include it('Has a width of 100%') {
+    @include assert {
+      @include output {
+        @extend .container;
+      }
+
+      @include expect {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@each $breakpoint, $width in $breakpoints {
+  @include describe('.#{$breakpoint}:container') {
+    @include it('Has a max-width of #{$width}.') {
+      @include assert {
+        @include output {
+          @extend #{'.' + css-escape('#{$breakpoint}:container')};
+        }
+
+        @include expect {
+          max-width: $width;
+        }
+      }
+    }
+  }
+}
