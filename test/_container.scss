@@ -34,7 +34,11 @@ $breakpoints: (
         }
 
         @include expect {
-          max-width: $width;
+          width: 100%;
+
+          @media screen and (max-width: $width) {
+            max-width: $width;
+          }
         }
       }
     }
